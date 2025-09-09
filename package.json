@@ -1,0 +1,36 @@
+{
+  "name": "flowerDeliveryApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",  
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run serverDev\" \"npm run client\"",
+    "server": "npm start --prefix server",
+    "serverDev": "npm dev --prefix server",
+    "client": "npm start --prefix client",
+    "lint": "eslint src/**/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeyAErmolenko/flowerDeliveryApp.git"
+  },
+  "keywords": [],
+  "author": "Oleksij_Yermolenko <AlexeyErmolenko@i.ua>",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/AlexeyAErmolenko/flowerDeliveryApp/issues"
+  },
+  "homepage": "https://github.com/AlexeyAErmolenko/flowerDeliveryApp#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "globals": "^16.3.0",
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
