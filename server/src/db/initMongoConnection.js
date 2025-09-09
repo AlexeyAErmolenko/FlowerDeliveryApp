@@ -11,6 +11,7 @@ const initMongoConnection = async () => {
     await mongoose.connect(
       `mongodb+srv://${user}:${pwd}@${url}/?retryWrites=true&w=majority&appName=${db}`,
     );
+
     console.log('MongoDB connection successfully established!');
   } catch (error) {
     console.error('Error while setting up mongo connection:', error);
