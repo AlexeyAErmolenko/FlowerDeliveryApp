@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btnLogout {
+    padding: 0;
+    background-color: inherit;
+    border: none;
+    height: 30px;
+}
+
+.username {
+    color: #fafafa;
+    margin: 6px 0;
+}

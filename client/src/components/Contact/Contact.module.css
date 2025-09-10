@@ -1,0 +1,31 @@
+.card {
+
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    padding: 10px;
+    width: 368px;
+
+    border: 1px solid #979797;
+    border-radius: 10px;
+    background: #1976d2;
+
+    align-items: center;
+}
+
+.cardData {}
+
+.text {
+    min-width: 135px;
+    color: #fafafa;
+}
+
+p {
+    margin: 5px;
+}
+
+.btnEdit,
+.btnDelete {
+    background: inherit;
+    border: none;
+}

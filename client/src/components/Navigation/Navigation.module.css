@@ -1,0 +1,9 @@
+.nav {
+    display: flex;
+    gap: 5px;
+    color: #fafafa;
+}
+
+.link {
+    color: #fafafa;
+}

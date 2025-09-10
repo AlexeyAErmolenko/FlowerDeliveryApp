@@ -1,5 +1,5 @@
 {
-  "name": "flowerDeliveryApp",
+  "name": "flower-delivery-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,8 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "dev": "concurrently \"npm run serverDev\" \"npm run client\"",
     "server": "npm start --prefix server",
-    "serverDev": "npm dev --prefix server",
-    "client": "npm start --prefix client",
+    "serverDev": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
     "lint": "eslint src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
