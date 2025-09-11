@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import { MongoClient, ObjectId } from 'mongodb';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -14,6 +15,19 @@ await client.connect();
 const db = client.db('flower_delivery');
 const shopsCollection = db.collection('shops');
 const productsCollection = db.collection('products');
+
+const shopSchema = new mongoose.Schema({
+  name: String,
+  address: String,
+});
+const Shop = mongoose.model('Shop', shopSchema);
+
+const productSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  shop: { type: mongoose.Schema.Types.ObjectId, ref: 'Shop' },
+});
+const Product = mongoose.model('Product', productSchema);
 
 app.get('/', (req, res) => {
   res.send('Flower API is running!');

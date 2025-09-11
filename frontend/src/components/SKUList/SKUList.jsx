@@ -2,7 +2,7 @@ import css from './SKUList.module.css';
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { addToCart } from "../../redux/cart/slice";
+import { addToCart } from "../../cartSlice";
 
 export default function SKUList() {
   const dispatch = useDispatch();
