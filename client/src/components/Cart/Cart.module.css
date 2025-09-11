@@ -29,3 +29,8 @@ p {
     background: inherit;
     border: none;
 }
+
+.container {
+    padding: 16px;
+    border-top: 1px solid currentColor;
+}

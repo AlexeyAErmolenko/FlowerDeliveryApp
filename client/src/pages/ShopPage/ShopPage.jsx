@@ -1,11 +1,16 @@
 import css from './ShopPage.module.css';
+import ShopList from "../../components/ShopList/ShopList";
+import SKUList from "../../components/SKUList/SKUList";
+
 export default function ShopPage() {
     return (
-        <div className={css.container}>
+        <div >
             <title>Shop</title>
-            <div>
-                <h2>Зліва список магазинів</h2>
-                <h2>Справа сiтка товарів</h2>                
+            <div className={css.container}>
+                <ShopList />
+                <div className={css.mainBlock}>
+                    <SKUList />
+                </div>
             </div>
         </div>
     );

@@ -1,12 +1,12 @@
 import createHttpError from 'http-errors';
 
 import {
-  getAllContacts,
-  getContactById,
-  createContact,
-  updateContact,
-  deleteContactById,
-} from '../services/contacts.js';
+  getAllCarts,
+  getCartById,
+  createCart,
+  updateCart,
+  deleteCartById,
+} from '../services/carts.js';
 
 // import parsePaginationParams from '../utils/parsePaginationParams.js';
 
@@ -16,16 +16,16 @@ import {
 
 import getEnvVar from '../utils/getEnvVar.js';
 
-const contactNotFound = () => createHttpError(404, 'Contact not found');
+const cartNotFound = () => createHttpError(404, 'Cart not found');
 
-export const getContactsController = async (req, res) => {
+export const getCartsController = async (req, res) => {
   // const { page, perPage } = parsePaginationParams(req.query);
 
   // const { sortBy, sortOrder } = parseSortParams(req.query);
 
   // const filter = parseFilterParams(req.query);
 
-  const contacts = await getAllContacts({
+  const carts = await getAllCarts({
     // page,
     // perPage,
     // sortBy,
@@ -36,53 +36,53 @@ export const getContactsController = async (req, res) => {
 
   res.json({
     status: 200,
-    message: 'Successfully found contacts!',
-    data: contacts,
+    message: 'Successfully found carts!',
+    data: carts,
   });
 };
 
-export const getContactByIdController = async (req, res) => {
-  const { contactId } = req.params;
+export const getCartByIdController = async (req, res) => {
+  const { cartId } = req.params;
   const userId = req.user.id;
 
-  const contact = await getContactById(contactId, userId);
-  if (!contact) {
-    throw contactNotFound();
+  const cart = await getCartById(cartId, userId);
+  if (!cart) {
+    throw cartNotFound();
   }
 
   res.status(200).json({
-    message: `Successfully found contact with id ${contactId}!`,
-    data: contact,
+    message: `Successfully found cart with id ${cartId}!`,
+    data: cart,
   });
 };
 
-export const createContactsController = async (req, res) => {
+export const createCartsController = async (req, res) => {
   const payload = {
     name: req.body.name,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     isFavourite: req.body.isFavourite,
-    contactType: req.body.contactType,
+    cartType: req.body.cartType,
     userId: req.user.id,
   };
-  const contact = await createContact(payload);
+  const cart = await createCart(payload);
 
   res.status(201).json({
     status: 201,
-    message: `Successfully created a contact!`,
-    data: contact,
+    message: `Successfully created a cart!`,
+    data: cart,
   });
 };
 
-export const upsertContactController = async (req, res, next) => {
-  const { contactId } = req.params;
+export const upsertCartController = async (req, res, next) => {
+  const { cartId } = req.params;
   const userId = req.user.id;
   const filter = {
-    _id: contactId,
+    _id: cartId,
     userId,
   };
 
-  const result = await updateContact(
+  const result = await updateCart(
     filter,
     { ...req.body },
     {
@@ -90,43 +90,43 @@ export const upsertContactController = async (req, res, next) => {
     },
   );
   if (!result) {
-    throw contactNotFound();
+    throw cartNotFound();
   }
 
   const status = result.isNew ? 201 : 200;
 
   res.status(status).json({
     status,
-    message: `Successfully upserted a contact!`,
-    data: result.contact,
+    message: `Successfully upserted a cart!`,
+    data: result.cart,
   });
 };
 
-export const patchContactController = async (req, res, next) => {
-  const { contactId } = req.params;
+export const patchCartController = async (req, res, next) => {
+  const { cartId } = req.params;
   const userId = req.user.id;
   const filter = {
-    _id: contactId,
+    _id: cartId,
     userId,
   };
 
-  const result = await updateContact(filter, {
+  const result = await updateCart(filter, {
     ...req.body,
   });
 
   res.json({
     status: 200,
-    message: `Successfully patched a contact!`,
-    data: result.contact,
+    message: `Successfully patched a cart!`,
+    data: result.cart,
   });
 };
 
-export const deleteContactByIdController = async (req, res) => {
-  const { contactId } = req.params;
+export const deleteCartByIdController = async (req, res) => {
+  const { cartId } = req.params;
   const userId = req.user.id;
-  const contact = await deleteContactById(contactId, userId);
-  if (!contact) {
-    throw contactNotFound();
+  const cart = await deleteCartById(cartId, userId);
+  if (!cart) {
+    throw cartNotFound();
   }
 
   res.status(204).send();

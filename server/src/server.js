@@ -4,7 +4,7 @@ import cors from 'cors';
 import getEnvVar from './utils/getEnvVar.js';
 import ENV_VARS from './constants/env.js';
 
-import contactsRouter from './routers/index.js';
+import flowersRouter from './routers/index.js';
 
 import notFoundHandler from './middlewares/notFoundHandler.js';
 import errorHandler from './middlewares/errorHandler.js';
@@ -24,7 +24,7 @@ const startServer = () => {
 
   app.use(cookieParser());
 
-  // app.use(contactsRouter);
+  app.use(flowersRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);

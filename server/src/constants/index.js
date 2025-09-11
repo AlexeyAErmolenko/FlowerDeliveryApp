@@ -3,7 +3,7 @@
 //   DESC: ['desc', '-1', 'descending'],
 // };
 
-// export const KEYS_OF_CONTACT = ['_id', 'name', 'isFavourite', 'contactType'];
+// export const KEYS_OF_CONTACT = ['_id', 'name', 'isFavourite', 'cartType'];
 
 // export const FIFTEEN_MINUTES = 15 * 60 * 1000;
 // export const THIRTY_DAY = 30 * 24 * 60 * 60 * 1000;

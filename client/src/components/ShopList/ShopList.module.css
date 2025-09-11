@@ -1,0 +1,21 @@
+.container {}
+
+.list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.container .list button {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+}

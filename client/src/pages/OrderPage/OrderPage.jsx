@@ -4,7 +4,7 @@ export default function OrderPage() {
     return (
         <>
             <title>Order</title>
-            Order #123
+            Order #123456q
             {/* <LoginForm /> */}
         </>
     );

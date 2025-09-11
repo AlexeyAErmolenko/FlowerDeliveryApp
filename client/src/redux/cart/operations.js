@@ -4,10 +4,10 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://connections-api.goit.global/';
 
 export const fetchAll = createAsyncThunk(
-  'contacts/fetchAll',
+  'carts/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/contacts');
+      const response = await axios.get('/carts');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -15,11 +15,11 @@ export const fetchAll = createAsyncThunk(
   },
 );
 
-export const addContact = createAsyncThunk(
-  'contacts/addContact',
-  async (newContact, thunkAPI) => {
+export const addCart = createAsyncThunk(
+  'carts/addCart',
+  async (newCart, thunkAPI) => {
     try {
-      const response = await axios.post('/contacts', newContact);
+      const response = await axios.post('/carts', newCart);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -27,11 +27,11 @@ export const addContact = createAsyncThunk(
   },
 );
 
-export const editContact = createAsyncThunk(
-  'contacts/editContact',
+export const editCart = createAsyncThunk(
+  'carts/editCart',
   async ({ id, name, number }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/contacts/${id}`, {
+      const response = await axios.patch(`/carts/${id}`, {
         name,
         number,
       });
@@ -42,11 +42,11 @@ export const editContact = createAsyncThunk(
   },
 );
 
-export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
-  async (idContact, thunkAPI) => {
+export const deleteCart = createAsyncThunk(
+  'carts/deleteCart',
+  async (idCart, thunkAPI) => {
     try {
-      const response = await axios.delete(`/contacts/${idContact}`);
+      const response = await axios.delete(`/carts/${idCart}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,18 +1,14 @@
 .wrapper {
     display: flex;
-    gap: 10px;
+    gap: 4px;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.btnLogout {
+.wrapper button {
     padding: 0;
     background-color: inherit;
     border: none;
     height: 30px;
-}
-
-.username {
-    color: #fafafa;
-    margin: 6px 0;
+    width: 100px;
 }
