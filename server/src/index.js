@@ -1,13 +1,3 @@
-// import initMongoConnection from './db/initMongoConnection.js';
-// import startServer from './server.js';
-
-// const bootstrap = async () => {
-//   await initMongoConnection();
-//   startServer();
-// };
-
-// void bootstrap();
-
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 import cors from 'cors';
@@ -21,11 +11,12 @@ app.use(express.json());
 
 const client = new MongoClient(process.env.MONGODB_URI);
 await client.connect();
-const db = client.db('flowerDB');
+const db = client.db('flower_delivery');
 const shopsCollection = db.collection('shops');
+const productsCollection = db.collection('products');
 
 app.get('/', (req, res) => {
-  res.send('Flower API is running 🚀');
+  res.send('Flower API is running!');
 });
 
 // Отримати всі магазини
@@ -35,13 +26,13 @@ app.get('/shops', async (req, res) => {
 });
 
 // Отримати товари конкретного магазину
-app.get('/shops/:id/products', async (req, res) => {
-  const shop = await shopsCollection.findOne({
-    _id: new ObjectId(req.params.id),
-  });
-  if (!shop) return res.status(404).json({ error: 'Shop not found' });
-  res.json(shop.products);
+app.get('/products/:shopId', async (req, res) => {
+  const products = await productsCollection
+    .find()
+    .toArray({ shopId: new ObjectId(req.params.shopId) });
+  if (!products) return res.status(404).json({ error: 'Products not found' });
+  res.json(products);
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
