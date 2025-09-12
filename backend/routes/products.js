@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 
   // fetch favorites separately to ensure favorites appear first
   const baseFilter = {};
-  if (shopId) baseFilter.shop = shopId;
+  if (shopId) baseFilter.shopId = shopId;
 
   const favorites = await Product.find({ ...baseFilter, favorite: true }).sort(
     sortObj,

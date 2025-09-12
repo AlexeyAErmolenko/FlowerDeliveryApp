@@ -1,7 +1,7 @@
 import express from 'express';
 import Order from '../models/Order.js';
-import Shop from '../models/Shop.js';
-import Product from '../models/Product.js';
+// import Shop from '../models/Shop.js';
+// import Product from '../models/Product.js';
 import mongoose from 'mongoose';
 const router = express.Router();
 
@@ -28,12 +28,12 @@ router.post('/', async (req, res) => {
 });
 
 // Get order details
-router.get('/:id', async (req, res) => {
-  const id = req.params.id;
+router.get('/:orderId', async (req, res) => {
+  const id = req.params.orderId;
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(400).json({ error: 'Invalid id' });
   const order = await Order.findById(id)
-    .populate('shop')
+    .populate('shopId')
     .populate('items.productId');
   if (!order) return res.status(404).json({ error: 'Order not found' });
   res.json(order);
