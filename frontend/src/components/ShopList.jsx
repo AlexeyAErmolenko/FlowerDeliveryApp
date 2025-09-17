@@ -1,11 +1,15 @@
-import React from "react";
+import css from './ShopList.module.css';
+
 export default function ShopList({ shops, selected, onSelect }) {
   return (
-    <div style={{ padding: 12 }}>
-      <h4>Shops</h4>
+    <div className={css.wrapShopList}>
+      <div className={css.title}>Shops</div>
       {shops.map(s => (
         <div key={s._id}>
-          <button style={{ display: "block", width: "100%", padding: 8, background: selected === s._id ? "#eee" : "transparent" }} onClick={() => onSelect(s._id)}>
+          <button
+            className={selected === s._id ? css.buttonSelected : css.button}
+            onClick={() => onSelect(s._id)}
+          >
             {s.name}
           </button>
         </div>

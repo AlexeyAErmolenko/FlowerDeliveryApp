@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import css from './MapPicker.module.css';
 
 export default function MapPicker({ location, onChange, address, onAddressChange, shops = [] }) {
   const mapRef = useRef();
@@ -49,7 +50,7 @@ export default function MapPicker({ location, onChange, address, onAddressChange
 
   return (
     <div>
-      <div ref={mapRef} style={{ width: "100%", height: 300 }} />
+      <div ref={mapRef} className={css.map}/>
     </div>
   );
 }

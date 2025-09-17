@@ -2,29 +2,31 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchOrder } from "../store/slices/ordersSlice";
 import { useDispatch, useSelector } from "react-redux";
+import css from './OrderPage.module.css';
 
 export default function OrderPage() {
-  const { id } = useParams();
+  const { orderId } = useParams();
+
   const dispatch = useDispatch();
   const order = useSelector(s => s.orders.current);
 
   useEffect(() => {
-    if (id) dispatch(fetchOrder(id));
-  }, [id]);
+    if (orderId) dispatch(fetchOrder(orderId));
+  }, [orderId]);
 
   if (!order) return <div>Loading...</div>;
 
   // createdAtUTC stored in DB; convert to local string
   const created = new Date(order.createdAtUTC || order.createdAt || order.createdAtUTC);
   const localString = created.toLocaleString();
-
+  
   return (
-    <div style={{ padding: 12 }}>
+    <div className={css.wrapOrderPage}>
       <h2>Order details</h2>
-      <div>Order ID: {order._id || order.orderId}</div>
+      <div>Order ID: {order._id || order.orderId}</div>     
       <div>Date: {localString}</div>
       <div>Delivery address: {order.deliveryAddress}</div>
-      <div>Shop: {order.shop?.name}</div>
+      <div>Shop: {order.shopId.name}</div>
       <h3>Items</h3>
       <ul>
         {order.items.map(it => <li key={it._id || it.productId}>{it.name} × {it.quantity} — 💲{it.price}</li>)}

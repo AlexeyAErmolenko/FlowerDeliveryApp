@@ -5,6 +5,7 @@ import { fetchProducts, setPage, setSort } from "../store/slices/productsSlice";
 import ShopList from "../components/ShopList";
 import ProductCard from "../components/ProductCard";
 import Pagination from "../components/Pagination";
+import css from './ShopPage.module.css';
 
 export default function ShopsPage() {
   const dispatch = useDispatch();
@@ -33,21 +34,21 @@ export default function ShopsPage() {
   };
 
   return (
-    <div style={{ display: "flex", height: "100%" }}>
-      <div style={{ width: "25%", borderRight: "1px solid #ddd" }}>
+    <div className={css.wrap}>
+      <div className={css.shopList}>
         <ShopList shops={shops} selected={selectedShop} onSelect={id => setSelectedShop(id)} />
       </div>
-      <div style={{ flex: 1, padding: 12 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div className={css.productList}>
+        <div className={css.sortedList}>          
           <div>
             <button onClick={() => handleSort("price", "asc")}>Price ↑</button>
             <button onClick={() => handleSort("price", "desc")}>Price ↓</button>
             <button onClick={() => handleSort("date", "desc")}>Newest</button>
           </div>
-          <div>Favorites first shown automatically</div>
+          {/* <div>Favorites first shown automatically</div> */}
         </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginTop: 12 }}>
+{/* Products */}
+        <div className={css.gridProductList}>
           {productsState.items.map(p => (<ProductCard key={p._id} product={p} />))}
         </div>
 

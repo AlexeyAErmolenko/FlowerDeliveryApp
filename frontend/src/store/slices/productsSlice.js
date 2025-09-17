@@ -8,6 +8,20 @@ export const fetchProducts = createAsyncThunk(
   },
 );
 
+export const toggleFavorite = createAsyncThunk(
+  'products/toggleFavorite',
+  async (id) => {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/products/${id}/favorite`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
+    return await res.json();
+  },
+);
+
 const slice = createSlice({
   name: 'products',
   initialState: {
@@ -40,6 +54,13 @@ const slice = createSlice({
       })
       .addCase(fetchProducts.rejected, (s) => {
         s.status = 'failed';
+      })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        const updated = action.payload;
+        const index = state.items.findIndex((p) => p._id === updated._id);
+        if (index !== -1) {
+          state.items[index] = updated;
+        }
       });
   },
 });

@@ -1,0 +1,31 @@
+.wrapShopList {
+    padding: 12px;
+    min-width: 150px;
+}
+
+.wrapShopList button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 16px;
+    background-color: snow;
+    color: #424242;
+    font-weight: bold;
+}
+
+.wrapShopList .button {
+    background-color: #424242;
+    color: snow;
+}
+
+.wrapShopList .buttonSelected {
+    background-color: snow;
+    color: #424242;
+}
+
+.title {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-weight: bold;
+}

@@ -22,10 +22,14 @@ router.get('/', async (req, res) => {
   const baseFilter = {};
   if (shopId) baseFilter.shopId = shopId;
 
-  const favorites = await Product.find({ ...baseFilter, favorite: true }).sort(
-    sortObj,
-  );
-  const nonFav = await Product.find({ ...baseFilter, favorite: { $ne: true } })
+  const favorites = await Product.find({
+    ...baseFilter,
+    isFavorite: true,
+  }).sort(sortObj);
+  const nonFav = await Product.find({
+    ...baseFilter,
+    isFavorite: { $ne: true },
+  })
     .sort(sortObj)
     .skip(skip)
     .limit(Number(limit));
@@ -45,4 +49,20 @@ router.get('/', async (req, res) => {
 //   res.status(201).json(p);
 // });
 
+router.patch('/:id/favorite', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    product.isFavorite = !product.isFavorite;
+    await product.save();
+
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
 export default router;

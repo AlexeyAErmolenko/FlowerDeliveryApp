@@ -1,0 +1,42 @@
+.wrap {
+    display: flex;
+    height: 100%;
+}
+
+.shopList {
+    width: 10%;
+    min-width: 140px;
+    /* border-right: 1px solid #ddd; */
+    text-align: center;
+}
+
+.productList {
+    text-align: center;
+    flex: 1;
+    padding: 12px;
+    padding-top: 0;
+}
+
+.sortedList {
+    display: flex;
+    gap: 5px;
+    justify-content: right;
+    align-items: center;
+}
+
+.sortedList button {
+    margin-left: 4px;
+    padding: 4px;
+    background-color: snow;
+    color: #424242;
+    border-radius: 8px;
+}
+
+.gridProductList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+    height: calc(100vh - 144px);
+    overflow-y: scroll;
+}

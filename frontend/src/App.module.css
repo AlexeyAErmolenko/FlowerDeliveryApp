@@ -1,0 +1,53 @@
+.app {
+    /* display: flex; */
+    /* height: 100vh; */
+    background-color: #424242;
+    color: snow;
+}
+
+.nav {
+    /* width: 150px; */
+    padding: 12px;
+    /* border-right: 1px solid #ddd; */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.linkCartEmpty {
+    display: none;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.linkCartFull {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.linkOrder {
+    display: none;
+}
+
+.link {
+    text-decoration: none;
+    color: snow;
+    /* font-weight: bold; */
+}
+
+.link:hover,
+.link:focus,
+.link:active {
+    font-weight: bold;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.main {
+    flex: 1;
+}
