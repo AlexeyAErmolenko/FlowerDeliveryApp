@@ -64,10 +64,18 @@ export default function CartPage() {
 
           </div>
           <div className={css.mapCardPage}>
-          <MapPicker location={location} onChange={(loc) => { setLocation(loc); }} address={address} onAddressChange={setAddress} shops={shops} />
+            {/* <MapPicker location={location} onChange={(loc) => { setLocation(loc); }} address={address} onAddressChange={setAddress} shops={shops} /> */}
+            <MapPicker 
+              location={location}          
+              onChange={(loc) => setLocation(loc)} 
+              address={address}           
+              onAddressChange={setAddress}              
+              shops={shops}                  
+              selectedShopId={selectedShopId}
+            />
           </div>
         </div>
-        <div className={css.flex}>
+        <div className={css.flex}>     
           <button className={css.buttonSubmit} onClick={handleSubmit} disabled={!cart.items.length || !email || !address}>
             Submit Order
           </button>

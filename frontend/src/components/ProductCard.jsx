@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
   
   const dispatch = useDispatch();
 
-  const handleFavorite = () => {
+  const handleFavorite = () => {    
     dispatch(toggleFavorite(product._id));
   };
 

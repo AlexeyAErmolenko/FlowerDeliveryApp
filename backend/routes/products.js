@@ -1,8 +1,8 @@
 import express from 'express';
 import Product from '../models/Product.js';
+
 const router = express.Router();
 
-// GET /api/products?shopId=...&page=1&limit=6&sort=price|date&order=asc|desc
 router.get('/', async (req, res) => {
   const {
     shopId,
@@ -13,12 +13,10 @@ router.get('/', async (req, res) => {
   } = req.query;
   const skip = (Math.max(1, page) - 1) * limit;
 
-  // sorting: favorite first, then requested sort
   const sortObj = {};
   if (sort === 'price') sortObj.price = order === 'asc' ? 1 : -1;
   else sortObj.createdAt = order === 'asc' ? 1 : -1;
 
-  // fetch favorites separately to ensure favorites appear first
   const baseFilter = {};
   if (shopId) baseFilter.shopId = shopId;
 
@@ -65,4 +63,5 @@ router.patch('/:id/favorite', async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 });
+
 export default router;

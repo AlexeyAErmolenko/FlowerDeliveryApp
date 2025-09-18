@@ -12,7 +12,7 @@ export const toggleFavorite = createAsyncThunk(
   'products/toggleFavorite',
   async (id) => {
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/products/${id}/favorite`,
+      `${import.meta.env.VITE_API_URL}/api/products/${id}/favorite`,
       {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -41,6 +41,9 @@ const slice = createSlice({
       state.sort = action.payload.sort;
       state.order = action.payload.order;
     },
+    setProducts(state, action) {
+      state.items = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -65,5 +68,5 @@ const slice = createSlice({
   },
 });
 
-export const { setPage, setSort } = slice.actions;
+export const { setPage, setSort, setProducts } = slice.actions;
 export default slice.reducer;
